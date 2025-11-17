@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+    <persistence-unit name="Java4_Lab3_PolyOE" transaction-type="RESOURCE_LOCAL">
+        <class>com.wangquocthai.java4.lab3.entity.Favorite</class>
+        <class>com.wangquocthai.java4.lab3.entity.Share</class>
+        <class>com.wangquocthai.java4.lab3.entity.User</class>
+        <class>com.wangquocthai.java4.lab3.entity.Video</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:sqlserver://localhost:1433;databaseName=Java4_Lab3_PolyOE;encrypt=true;trustServerCertificate=true;"/>
+            <property name="jakarta.persistence.jdbc.user"
+                      value="sa"/>
+            <property name="jakarta.persistence.jdbc.password"
+                      value="Hungmynghe1@"/>
+            <property name="jakarta.persistence.jdbc.driver"
+                      value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+            <property name="hibernate.dialect"
+                      value="org.hibernate.dialect.SQLServerDialect"/>
+            <!-- Tắt Bean Validation để tránh xung đột phiên bản -->
+            <property name="jakarta.persistence.validation.mode"
+                      value="none"/>
+        </properties>
+    </persistence-unit>
+</persistence>
