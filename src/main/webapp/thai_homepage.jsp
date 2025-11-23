@@ -21,9 +21,9 @@
 <br/>
 <hr/>
 <h2><a href="${pageContext.request.contextPath}/favorites">TỔNG QUAN LAB 3</a></h2>
-<%--<br/>--%>
-<%--<hr/>--%>
-<%--<a href="#">TỔNG QUAN LAB 4</a>--%>
+<br/>
+<hr/>
+<h2><a href="${pageContext.request.contextPath}/lab4/index.jsp">TỔNG QUAN LAB 4</a></h2>
 <%--<br/>--%>
 <%--<hr/>--%>
 <%--<a href="#">TỔNG QUAN LAB 5</a>--%>

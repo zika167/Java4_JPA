@@ -18,12 +18,12 @@ import java.util.List;
  * Lớp Servlet được tạo từ template.
  */
 @WebServlet({
-        "/user/crud/index",
-        "/user/crud/edit/*",
-        "/user/crud/create",
-        "/user/crud/update",
-        "/user/crud/delete",
-        "/user/crud/reset"
+        "/user2/crud/index",
+        "/user2/crud/edit/*",
+        "/user2/crud/create",
+        "/user2/crud/update",
+        "/user2/crud/delete",
+        "/user2/crud/reset"
 })
 public class UserCRUDServlet extends HttpServlet {
 
