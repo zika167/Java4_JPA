@@ -7,4 +7,29 @@
         <welcome-file>thai_homepage.jsp</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    
+    <!-- Bài 4: Cấu hình Filter1 và Filter2 với thứ tự chạy -->
+    <!-- Filter1 chạy TRƯỚC Filter2 -->
+    
+    <filter>
+        <filter-name>Filter1</filter-name>
+        <filter-class>com.wangquocthai.java4.lab5.filter.Filter1</filter-class>
+    </filter>
+    
+    <filter>
+        <filter-name>Filter2</filter-name>
+        <filter-class>com.wangquocthai.java4.lab5.filter.Filter2</filter-class>
+    </filter>
+    
+    <!-- Filter mapping - thứ tự khai báo quyết định thứ tự chạy -->
+    <filter-mapping>
+        <filter-name>Filter1</filter-name>
+        <url-pattern>/lab5/filter-demo/*</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>Filter2</filter-name>
+        <url-pattern>/lab5/filter-demo/*</url-pattern>
+    </filter-mapping>
+    
 </web-app>

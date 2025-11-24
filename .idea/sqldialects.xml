@@ -3,5 +3,6 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/main/resources/database/lab3_database.sql" dialect="AZURE" />
     <file url="file://$PROJECT_DIR$/src/main/resources/database/lab4_database.sql" dialect="AZURE" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/database/lab5_logs.sql" dialect="AZURE" />
   </component>
 </project>

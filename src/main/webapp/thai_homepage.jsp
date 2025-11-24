@@ -24,11 +24,11 @@
 <br/>
 <hr/>
 <h2><a href="${pageContext.request.contextPath}/lab4/index.jsp">TỔNG QUAN LAB 4</a></h2>
-<%--<br/>--%>
-<%--<hr/>--%>
-<%--<a href="#">TỔNG QUAN LAB 5</a>--%>
-<%--<br/>--%>
-<%--<hr/>--%>
+<br/>
+<hr/>
+<h2><a href="${pageContext.request.contextPath}/lab5/index.jsp">TỔNG QUAN LAB 5</a></h2>
+<br/>
+<hr/>
 <%--<div>TỔNG QUAN LAB 6 ( Code DB và test trực tiếp trên main )</div>--%>
 <%--<br/>--%>
 <%--<hr/>--%>
