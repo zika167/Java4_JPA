@@ -3,7 +3,7 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
-    <persistence-unit name="Java4_Lab4_PolyOE" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="Java4_PolyOE" transaction-type="RESOURCE_LOCAL">
 <!--        <class>com.wangquocthai.java4.lab2.entity.User</class>-->
 <!--        <class>com.wangquocthai.java4.lab3.entity.Favorite</class>-->
 <!--        <class>com.wangquocthai.java4.lab3.entity.Share</class>-->
@@ -21,7 +21,7 @@
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:sqlserver://localhost:1433;databaseName=Java4_Lab4_PolyOE;encrypt=true;trustServerCertificate=true;"/>
+                      value="jdbc:sqlserver://localhost:1433;databaseName=Java4_PolyOE;encrypt=true;trustServerCertificate=true;"/>
             <property name="jakarta.persistence.jdbc.user"
                       value="sa"/>
             <property name="jakarta.persistence.jdbc.password"

@@ -10,7 +10,6 @@
     
     <!-- Bài 4: Cấu hình Filter1 và Filter2 với thứ tự chạy -->
     <!-- Filter1 chạy TRƯỚC Filter2 -->
-    
     <filter>
         <filter-name>Filter1</filter-name>
         <filter-class>com.wangquocthai.java4.lab5.filter.Filter1</filter-class>
