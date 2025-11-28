@@ -50,13 +50,13 @@
         }
         .nav-links {
             display: flex;
-            gap: 15px;
+            gap: 5px;
             flex-wrap: wrap;
         }
         .nav-links a {
             color: #495057;
             text-decoration: none;
-            padding: 8px 16px;
+            padding: 8px 8px;
             border-radius: 5px;
             transition: all 0.3s;
         }
@@ -149,9 +149,9 @@
                 <c:choose>
                     <c:when test="${empty sessionScope.user}">
                         <a href="${pageContext.request.contextPath}/account/sign-up">📝 Đăng ký</a>
+                        <a href="${pageContext.request.contextPath}/video/list">📹 Danh sách Video</a>
                     </c:when>
                     <c:otherwise>
-                        <a href="${pageContext.request.contextPath}/video/list">📹 Danh sách Video</a>
                         <a href="${pageContext.request.contextPath}/account/edit-profile">👤 Sửa thông tin</a>
                         <a href="${pageContext.request.contextPath}/account/change-password">🔒 Đổi mật khẩu</a>
 
@@ -166,7 +166,7 @@
             <div class="user-info">
                 <c:choose>
                     <c:when test="${empty sessionScope.user}">
-                        <a href="${pageContext.request.contextPath}/auth/login" style="color: #495057; text-decoration: none;">
+                        <a href="${pageContext.request.contextPath}/lab6/login" style="color: #495057; text-decoration: none;">
                             🔐 Đăng nhập
                         </a>
                     </c:when>

@@ -13,7 +13,7 @@ import poly.filter.AuthFilter;
 
 import java.io.IOException;
 
-@WebServlet("/auth/login")
+@WebServlet({"/lab6/login", "/account/sign-in"})
 public class LoginServlet extends HttpServlet {
     private UserDAO userDAO = new UserDAOImpl();
 
@@ -46,14 +46,21 @@ public class LoginServlet extends HttpServlet {
             // Đăng nhập thành công
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
+            
+            System.out.println("✅ Login successful: " + user.getId());
 
             // Kiểm tra xem có URI cần redirect không (từ AuthFilter)
             String securityUri = (String) session.getAttribute(AuthFilter.SECURITY_URI);
-            if (securityUri != null) {
+            System.out.println("🔍 Security URI from session: " + securityUri);
+            
+            if (securityUri != null && !securityUri.isEmpty()) {
                 session.removeAttribute(AuthFilter.SECURITY_URI);
+                System.out.println("➡️ Redirecting to: " + securityUri);
                 resp.sendRedirect(securityUri);
             } else {
-                resp.sendRedirect(req.getContextPath() + "/lab6/page.jsp");
+                String defaultPage = req.getContextPath() + "/lab6/page.jsp";
+                System.out.println("➡️ Redirecting to default: " + defaultPage);
+                resp.sendRedirect(defaultPage);
             }
 
         } catch (Exception e) {

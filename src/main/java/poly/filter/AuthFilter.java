@@ -47,13 +47,21 @@ public class AuthFilter implements Filter {
         if (user == null || (uri.contains("/admin/") && !user.getAdmin())) {
             // Nếu chưa đăng nhập HOẶC truy cập /admin/ mà không phải admin
             
+            System.out.println("🚫 AuthFilter: Access denied to " + uri);
+            System.out.println("   User: " + (user != null ? user.getId() : "null"));
+            System.out.println("   Is Admin: " + (user != null ? user.getAdmin() : "N/A"));
+            
             // Lưu URI vào session để redirect về sau khi đăng nhập
             session.setAttribute(AuthFilter.SECURITY_URI, uri);
+            System.out.println("💾 Saved security URI to session: " + uri);
             
-            // Redirect đến trang đăng nhập
-            resp.sendRedirect(req.getContextPath() + "/lab6/views/auth/login.jsp");
+            // Redirect đến servlet login (theo yêu cầu Bài 4)
+            String loginUrl = req.getContextPath() + "/lab6/login";
+            System.out.println("➡️ Redirecting to: " + loginUrl);
+            resp.sendRedirect(loginUrl);
         } else {
             // Cho phép tiếp tục
+            System.out.println("✅ AuthFilter: Access granted to " + uri + " for user " + user.getId());
             chain.doFilter(request, response);
         }
     }

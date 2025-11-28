@@ -121,7 +121,7 @@
             <div class="alert alert-info">${message}</div>
         </c:if>
         
-        <form action="${pageContext.request.contextPath}/auth/login" method="post">
+        <form action="${pageContext.request.contextPath}/lab6/login" method="post">
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required 
