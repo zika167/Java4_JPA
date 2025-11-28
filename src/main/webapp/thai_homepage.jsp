@@ -29,9 +29,9 @@
 <h2><a href="${pageContext.request.contextPath}/lab5/index.jsp">TỔNG QUAN LAB 5</a></h2>
 <br/>
 <hr/>
-<%--<div>TỔNG QUAN LAB 6 ( Code DB và test trực tiếp trên main )</div>--%>
-<%--<br/>--%>
-<%--<hr/>--%>
+<h2><a href="${pageContext.request.contextPath}/lab6/index.jsp">TỔNG QUAN LAB 6</a></h2>
+<br/>
+<hr/>
 <%--<a href="#">TỔNG QUAN LAB 7</a>--%>
 <%--<br/>--%>
 <%--<hr/>--%>

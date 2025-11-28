@@ -16,10 +16,11 @@ import java.time.LocalDateTime;
  * Bài 3: AppFilter - Ghi nhận thông tin truy cập
  * - Thiết lập mã hóa UTF-8 cho tất cả request
  * - Ghi nhận thông tin truy cập vào CSDL (Id, URI, Access Time, Username)
+ * 
+ * TẠM THỜI TẮT - Cần tạo bảng Logs trước
  */
-@WebFilter(urlPatterns = {"/lab5/*"})
+// @WebFilter(urlPatterns = {"/lab5/*"})
 public class AppFilter implements Filter {
-    private LogsDAO logsDAO = new LogsDAOImpl();
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -34,6 +35,8 @@ public class AppFilter implements Filter {
         
         // 2. Ghi nhận thông tin truy cập vào CSDL
         try {
+            // Khởi tạo DAO bên trong method để tránh lỗi khi Filter start
+            LogsDAO logsDAO = new LogsDAOImpl();
             // Lấy thông tin từ request
             String uri = httpRequest.getRequestURI();
             LocalDateTime accessTime = LocalDateTime.now();

@@ -7,6 +7,7 @@ use Java4_PolyOE;
 DROP TABLE IF EXISTS Share;
 DROP TABLE IF EXISTS Favorite;
 DROP TABLE IF EXISTS Video;
+DROP TABLE IF EXISTS Logs;
 DROP TABLE IF EXISTS [Users];
 
 -- =====================================================

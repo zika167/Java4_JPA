@@ -13,11 +13,15 @@
 <!--        <class>com.wangquocthai.java4.lab4.share.entity.Share</class>-->
 <!--        <class>com.wangquocthai.java4.lab4.user.entity.User</class>-->
 <!--        <class>com.wangquocthai.java4.lab4.video.entity.Video</class>-->
-        <class>com.wangquocthai.java4.lab5.favorite.entity.Favorite</class>
-        <class>com.wangquocthai.java4.lab5.share.entity.Share</class>
-        <class>com.wangquocthai.java4.lab5.user.entity.User</class>
-        <class>com.wangquocthai.java4.lab5.video.entity.Video</class>
-        <class>com.wangquocthai.java4.lab5.logs.entity.Logs</class>
+<!--        <class>com.wangquocthai.java4.lab5.favorite.entity.Favorite</class>-->
+<!--        <class>com.wangquocthai.java4.lab5.share.entity.Share</class>-->
+<!--        <class>com.wangquocthai.java4.lab5.user.entity.User</class>-->
+<!--        <class>com.wangquocthai.java4.lab5.video.entity.Video</class>-->
+<!--        <class>com.wangquocthai.java4.lab5.logs.entity.Logs</class>-->
+        <class>com.wangquocthai.java4.lab6.entity.User</class>
+        <class>com.wangquocthai.java4.lab6.entity.Video</class>
+        <class>com.wangquocthai.java4.lab6.entity.Favorite</class>
+        <class>com.wangquocthai.java4.lab6.entity.Share</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="jakarta.persistence.jdbc.url"
