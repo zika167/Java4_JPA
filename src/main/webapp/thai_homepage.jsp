@@ -32,9 +32,9 @@
 <h2><a href="${pageContext.request.contextPath}/lab6/index.jsp">TỔNG QUAN LAB 6</a></h2>
 <br/>
 <hr/>
-<%--<a href="#">TỔNG QUAN LAB 7</a>--%>
-<%--<br/>--%>
-<%--<hr/>--%>
+<h2><a href="${pageContext.request.contextPath}/lab7/index.html">TỔNG QUAN LAB 7</a></h2>
+<br/>
+<hr/>
 <%--<a href="#">TỔNG QUAN LAB 8</a>--%>
 <%--<br/>--%>
 </body>

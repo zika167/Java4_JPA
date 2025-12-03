@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 7 - Bài 1: AJAX với Fetch API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #6c757d;
+            margin-bottom: 30px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lab 7 - Bài 1</h1>
+        <p class="subtitle">Ứng dụng AJAX với Fetch API</p>
+        
+        <button class="btn" onclick="fetchNhanVien()">
+            Gọi API lấy dữ liệu Nhân Viên
+        </button>
+    </div>
+
+    <script>
+        /**
+         * Hàm gọi API sử dụng Fetch API
+         * Đọc dữ liệu JSON từ servlet và xuất ra console
+         */
+        async function fetchNhanVien() {
+            try {
+                var url = "http://localhost:8080/lab7/api/nhanvien";
+
+                var options = {method : "GET"};
+
+                fetch(url,options).then(response => {
+                    console.log("ok", response.ok);
+                    console.log("status", response.status);
+                    response.json().then(json => {
+                        console.log("data", json);
+                        console.log('Mã NV:', json.manv);
+                        console.log('Họ tên:', json.hoTen);
+                        console.log('Giới tính:', json.gioiTinh ? 'Nam' : 'Nữ');
+                        console.log('Lương:', json.luong);
+                        alert("Đã in ra console log, bấm F12 để coi")
+
+                    })
+                });
+
+                // // Gọi API đến servlet
+                // const response = await fetch('/lab7/api/nhanvien');
+                //
+                // // Kiểm tra response
+                // if (!response.ok) {
+                //     throw new Error('Network response was not ok');
+                // }
+                //
+                // // Parse JSON
+                // const data = await response.json();
+                //
+                // // Xuất dữ liệu JSON ra console (theo yêu cầu)
+                // console.log('=== DỮ LIỆU JSON TỪ SERVLET ===');
+                // console.log(data);
+                // console.log('Mã NV:', data.manv);
+                // console.log('Họ tên:', data.hoTen);
+                // console.log('Giới tính:', data.gioiTinh ? 'Nam' : 'Nữ');
+                // console.log('Lương:', data.luong);
+                // console.log('================================');
+                //
+                // alert("Đã in ra console log, bấm F12 để coi")
+                
+            } catch (error) {
+                console.error('Lỗi khi gọi API:', error);
+                alert('Lỗi khi gọi API: ' + error.message);
+            }
+        }
+    </script>
+</body>
+
+</html>

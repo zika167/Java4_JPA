@@ -14,7 +14,7 @@ import java.io.IOException;
  * Servlet quản lý tất cả các trang Admin
  * Xử lý 4 URL: /admin/video, /admin/user, /admin/like, /admin/share
  */
-@WebServlet({"/admin/video", "/admin/user", "/admin/like", "/admin/share"})
+@WebServlet({"/admin2/video", "/admin2/user", "/admin2/like", "/admin2/share"})
 public class AdminServlet extends HttpServlet {
     
     @Override
@@ -31,19 +31,19 @@ public class AdminServlet extends HttpServlet {
         String pageTitle = "";
         String pageIcon = "";
         
-        if (uri.contains("/admin/video")) {
+        if (uri.contains("/admin2/video")) {
             jspPage = "/lab6/views/admin/video.jsp";
             pageTitle = "Quản lý Video";
             pageIcon = "📹";
-        } else if (uri.contains("/admin/user")) {
+        } else if (uri.contains("/admin2/user")) {
             jspPage = "/lab6/views/admin/user.jsp";
             pageTitle = "Quản lý User";
             pageIcon = "👥";
-        } else if (uri.contains("/admin/like")) {
+        } else if (uri.contains("/admin2/like")) {
             jspPage = "/lab6/views/admin/like.jsp";
             pageTitle = "Quản lý Favorite";
             pageIcon = "❤️";
-        } else if (uri.contains("/admin/share")) {
+        } else if (uri.contains("/admin2/share")) {
             jspPage = "/lab6/views/admin/share.jsp";
             pageTitle = "Quản lý Share";
             pageIcon = "📤";

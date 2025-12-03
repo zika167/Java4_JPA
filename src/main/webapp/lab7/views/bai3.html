@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 7 - Bài 3: REST API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #6c757d;
+            margin-bottom: 30px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .btn-get { background: linear-gradient(135deg, #28a745 0%, #20c997 100%); }
+        .btn-post { background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); }
+        .btn-put { background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%); }
+        .btn-delete { background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); }
+        
+        .result-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .result-box h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lab 7 - Bài 3</h1>
+        <p class="subtitle">REST API quản lý nhân viên với Fetch API</p>
+        
+        <div class="btn-group">
+            <button class="btn btn-get" onclick="getAllEmployees()">
+                GET: Lấy tất cả nhân viên
+            </button>
+            <button class="btn btn-get" onclick="getEmployeeById()">
+                GET: Lấy nhân viên theo ID (NV03)
+            </button>
+            <button class="btn btn-post" onclick="createEmployee()">
+                POST: Thêm nhân viên mới
+            </button>
+            <button class="btn btn-put" onclick="updateEmployee()">
+                PUT: Cập nhật nhân viên (NV06)
+            </button>
+            <button class="btn btn-delete" onclick="deleteEmployee()">
+                DELETE: Xóa nhân viên (NV06)
+            </button>
+        </div>
+        
+        <div class="result-box">
+            <h3>Kết quả:</h3>
+            <pre id="result">Chưa có dữ liệu...</pre>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = '/employees';
+        
+        /**
+         * GET:/employees - Lấy tất cả nhân viên
+         */
+        async function getAllEmployees() {
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                
+                console.log('GET /employees:', data);
+                displayResult('GET /employees', data);
+            } catch (error) {
+                console.error('Error:', error);
+                displayResult('Error', error.message);
+            }
+        }
+        
+        /**
+         * GET:/employees/ID - Lấy nhân viên theo ID
+         */
+        async function getEmployeeById() {
+            try {
+                const response = await fetch(API_URL + '/NV03');
+                const data = await response.json();
+                
+                console.log('GET /employees/NV03:', data);
+                displayResult('GET /employees/NV03', data);
+            } catch (error) {
+                console.error('Error:', error);
+                displayResult('Error', error.message);
+            }
+        }
+        
+        /**
+         * POST:/employees - Thêm nhân viên mới
+         */
+        async function createEmployee() {
+            try {
+                const newEmployee = {
+                    id: "NV06",
+                    name: "Nguyễn Văn Tèo",
+                    gender: true,
+                    salary: 9500.0
+                };
+                
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(newEmployee)
+                });
+                
+                const data = await response.json();
+                
+                console.log('POST /employees:', data);
+                displayResult('POST /employees', data);
+            } catch (error) {
+                console.error('Error:', error);
+                displayResult('Error', error.message);
+            }
+        }
+        
+        /**
+         * PUT:/employees/ID - Cập nhật nhân viên
+         */
+        async function updateEmployee() {
+            try {
+                const updatedEmployee = {
+                    id: "NV06",
+                    name: "Nguyễn Văn Tèo (Updated)",
+                    gender: true,
+                    salary: 12000.0
+                };
+                
+                const response = await fetch(API_URL + '/NV06', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(updatedEmployee)
+                });
+                
+                const data = await response.json();
+                
+                console.log('PUT /employees/NV06:', data);
+                displayResult('PUT /employees/NV06', data);
+            } catch (error) {
+                console.error('Error:', error);
+                displayResult('Error', error.message);
+            }
+        }
+        
+        /**
+         * DELETE:/employees/ID - Xóa nhân viên
+         */
+        async function deleteEmployee() {
+            try {
+                const response = await fetch(API_URL + '/NV06', {
+                    method: 'DELETE'
+                });
+                
+                const data = await response.json();
+                
+                console.log('DELETE /employees/NV06:', data);
+                displayResult('DELETE /employees/NV06', data);
+            } catch (error) {
+                console.error('Error:', error);
+                displayResult('Error', error.message);
+            }
+        }
+        
+        /**
+         * Hiển thị kết quả
+         */
+        function displayResult(title, data) {
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = `${title}\n\n` + JSON.stringify(data, null, 4);
+        }
+    </script>
+</body>
+</html>
