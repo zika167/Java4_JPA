@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Employee Management - REST Consumer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 200px;
+            padding: 5px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 8px 15px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        a {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Management - REST Consumer</h1>
+    
+    <div>
+        <div class="form-group">
+            <input id="id" placeholder="Id"><br>
+            <input id="name" placeholder="Name"><br>
+            <input type="radio" id="male" name="gender" checked> Male
+            <input type="radio" id="female" name="gender"> Female<br>
+            <input id="salary" placeholder="Salary">
+        </div>
+        
+        <hr>
+        
+        <button onclick="ctrl.create()">Create</button>
+        <button onclick="ctrl.update()">Update</button>
+        <button onclick="ctrl.delete()">Delete</button>
+        <button onclick="ctrl.reset()">Reset</button>
+    </div>
+    
+    <hr>
+    
+    <table border="1" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Salary</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="list">
+        </tbody>
+    </table>
+
+    <script>
+        var ctrl = {
+            setForm(employee) {
+                document.getElementById("id").value = employee.id;
+                document.getElementById("name").value = employee.name;
+                document.getElementById("salary").value = employee.salary;
+                
+                if (employee.gender) {
+                    document.getElementById("male").checked = true;
+                } else {
+                    document.getElementById("female").checked = true;
+                }
+            },
+            
+            getForm() {
+                return {
+                    id: document.getElementById("id").value,
+                    name: document.getElementById("name").value,
+                    salary: parseFloat(document.getElementById("salary").value),
+                    gender: document.getElementById("male").checked
+                };
+            },
+            
+            fillToTable(employees) {
+                var rows = [];
+                employees.forEach(e => {
+                    var row = `<tr>
+                        <td>${e.id}</td>
+                        <td>${e.name}</td>
+                        <td>${e.gender ? 'Male' : 'Female'}</td>
+                        <td>${e.salary}</td>
+                        <td><a href="javascript:ctrl.edit('${e.id}')">Edit</a></td>
+                    </tr>`;
+                    rows.push(row);
+                });
+                document.getElementById("list").innerHTML = rows.join('');
+            },
+            
+            loadAll() {
+                var url = 'http://localhost:8080/employees';
+                fetch(url, {method: "GET"})
+                    .then(resp => resp.json())
+                    .then(employees => {
+                        this.fillToTable(employees);
+                    });
+            },
+            
+            create() {
+                var data = this.getForm();
+                
+                // Kiểm tra ID rỗng
+                if (!data.id || data.id.trim() === '') {
+                    alert('Lỗi: ID không được để trống!');
+                    return;
+                }
+                
+                // Kiểm tra ID đã tồn tại chưa
+                var checkUrl = 'http://localhost:8080/employees/' + data.id;
+                fetch(checkUrl, {method: "GET"})
+                    .then(resp => resp.json())
+                    .then(existing => {
+                        if (existing && existing.id) {
+                            alert('Lỗi: ID "' + data.id + '" đã tồn tại!');
+                        } else {
+                            // Tạo mới
+                            var url = 'http://localhost:8080/employees';
+                            fetch(url, {
+                                method: "POST",
+                                headers: {"Content-Type": "application/json"},
+                                body: JSON.stringify(data)
+                            }).then(resp => resp.json()).then(json => {
+                                alert('Tạo nhân viên thành công!');
+                                this.loadAll();
+                                this.reset();
+                            });
+                        }
+                    });
+            },
+            
+            update() {
+                var data = this.getForm();
+                
+                // Kiểm tra ID rỗng
+                if (!data.id || data.id.trim() === '') {
+                    alert('Lỗi: ID không được để trống!');
+                    return;
+                }
+                
+                // Kiểm tra ID có tồn tại không
+                var checkUrl = 'http://localhost:8080/employees/' + data.id;
+                fetch(checkUrl, {method: "GET"})
+                    .then(resp => resp.json())
+                    .then(existing => {
+                        if (!existing || !existing.id) {
+                            alert('Lỗi: Không tìm thấy nhân viên có ID "' + data.id + '"!');
+                        } else {
+                            // Cập nhật
+                            var url = 'http://localhost:8080/employees/' + data.id;
+                            fetch(url, {
+                                method: "PUT",
+                                headers: {"Content-Type": "application/json"},
+                                body: JSON.stringify(data)
+                            }).then(resp => resp.json()).then(json => {
+                                alert('Cập nhật nhân viên thành công!');
+                                this.loadAll();
+                            });
+                        }
+                    });
+            },
+            
+            delete() {
+                var id = document.getElementById("id").value;
+                
+                // Kiểm tra ID rỗng
+                if (!id || id.trim() === '') {
+                    alert('Lỗi: ID không được để trống!');
+                    return;
+                }
+                
+                // Kiểm tra ID có tồn tại không
+                var checkUrl = 'http://localhost:8080/employees/' + id;
+                fetch(checkUrl, {method: "GET"})
+                    .then(resp => resp.json())
+                    .then(existing => {
+                        if (!existing || !existing.id) {
+                            alert('Lỗi: Không tìm thấy nhân viên có ID "' + id + '"!');
+                        } else {
+                            // Xác nhận xóa
+                            if (confirm('Bạn có chắc muốn xóa nhân viên "' + existing.name + '"?')) {
+                                var url = 'http://localhost:8080/employees/' + id;
+                                fetch(url, {method: "DELETE"})
+                                    .then(resp => resp.json())
+                                    .then(json => {
+                                        alert('Xóa nhân viên thành công!');
+                                        this.loadAll();
+                                        this.reset();
+                                    });
+                            }
+                        }
+                    });
+            },
+            
+            reset() {
+                document.getElementById("id").value = '';
+                document.getElementById("name").value = '';
+                document.getElementById("salary").value = '';
+                document.getElementById("male").checked = true;
+            },
+            
+            edit(id) {
+                var url = 'http://localhost:8080/employees/' + id;
+                fetch(url, {method: "GET"})
+                    .then(resp => resp.json())
+                    .then(employee => {
+                        this.setForm(employee);
+                    });
+            }
+        };
+        
+        // Load dữ liệu khi trang được tải
+        ctrl.loadAll();
+    </script>
+</body>
+</html>

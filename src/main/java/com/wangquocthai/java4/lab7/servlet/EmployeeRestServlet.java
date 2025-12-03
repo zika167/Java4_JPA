@@ -62,6 +62,12 @@ public class EmployeeRestServlet extends HttpServlet {
         // Đọc JSON từ client và chuyển sang Employee object
         Employee employee = RestIO.readObject(req, Employee.class);
         
+        // Kiểm tra ID đã tồn tại chưa
+        if (map.containsKey(employee.getId())) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Employee ID already exists.");
+            return;
+        }
+        
         // Thêm vào map
         map.put(employee.getId(), employee);
         
@@ -78,6 +84,13 @@ public class EmployeeRestServlet extends HttpServlet {
         
         // Đọc JSON từ client
         Employee employee = RestIO.readObject(req, Employee.class);
+        
+        // Kiểm tra ID có tồn tại không
+        if (!map.containsKey(employee.getId())) {
+            resp.sendError(HttpServletResponse.SC_NOT_FOUND, "Employee not found.");
+            
+            return;
+        }
         
         // Cập nhật vào map
         map.put(employee.getId(), employee);
