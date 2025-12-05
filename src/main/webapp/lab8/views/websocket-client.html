@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Chat - Websockets</title>
+    <script src="../js/text-chat.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        #messages {
+            height: 200px;
+            overflow: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+        }
+        #messages p {
+            margin: 5px 0;
+            padding: 5px;
+            background-color: #e8e8e8;
+            border-radius: 4px;
+        }
+        #message {
+            width: 70%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body onload="init()">
+    <h2>Simple Chat</h2>
+    <div id="messages"></div>
+    <hr>
+    <input id="message" placeholder="Nhập tin nhắn..." onkeypress="handleKeyPress(event)">
+    <button onclick="send()">Send</button>
+</body>
+</html>

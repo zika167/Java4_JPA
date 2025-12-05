@@ -35,7 +35,7 @@
 <h2><a href="${pageContext.request.contextPath}/lab7/index.html">TỔNG QUAN LAB 7</a></h2>
 <br/>
 <hr/>
-<%--<a href="#">TỔNG QUAN LAB 8</a>--%>
-<%--<br/>--%>
+<h2><a href="${pageContext.request.contextPath}/lab8/index.html">TỔNG QUAN LAB 8</a></h2>
+<br/>
 </body>
 </html>
