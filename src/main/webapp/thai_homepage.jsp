@@ -11,10 +11,13 @@
     <title>TỔNG QUAN LAB</title>
 </head>
 <body>
+<h1><a href="${pageContext.request.contextPath}/finaltest/product">TỔNG QUAN FINAL TEST</a></h1>
+<br/>
+<hr/>
 <h1>TỔNG QUAN LAB</h1>
 <br>
 <br>
-<h2>LAB 1 TẠO CLASS USER ÁNH XẠ TỚI DATABASE USERS THÔNG QUA JPA</h2>
+<!-- <h2>LAB 1 TẠO CLASS USER ÁNH XẠ TỚI DATABASE USERS THÔNG QUA JPA</h2>
 <br/>
 <hr/>
 <h2><a href="${pageContext.request.contextPath}/user/crud/index">TỔNG QUAN LAB 2</a></h2>
@@ -36,6 +39,6 @@
 <br/>
 <hr/>
 <h2><a href="${pageContext.request.contextPath}/lab8/index.html">TỔNG QUAN LAB 8</a></h2>
-<br/>
+<br/> -->
 </body>
 </html>

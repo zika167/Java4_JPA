@@ -39,4 +39,23 @@
                       value="none"/>
         </properties>
     </persistence-unit>
+
+    <persistence-unit name="Java4_FinalTest" transaction-type="RESOURCE_LOCAL">
+        <class>com.wangquocthai.java4.finaltest.entity.Product</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:sqlserver://localhost:1433;databaseName=Java4_FinalTest;encrypt=true;trustServerCertificate=true;"/>
+            <property name="jakarta.persistence.jdbc.user"
+                      value="sa"/>
+            <property name="jakarta.persistence.jdbc.password"
+                      value="Hungmynghe1@"/>
+            <property name="jakarta.persistence.jdbc.driver"
+                      value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+            <property name="hibernate.dialect"
+                      value="org.hibernate.dialect.SQLServerDialect"/>
+            <property name="jakarta.persistence.validation.mode"
+                      value="none"/>
+        </properties>
+    </persistence-unit>
 </persistence>
